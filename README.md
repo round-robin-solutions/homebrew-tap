@@ -12,7 +12,11 @@ brew install --cask round-robin-solutions/tap/bridgey-rr
 ```
 
 That taps this repository and installs `Bridgey by Round Robin.app` into `/Applications`. The app
-needs macOS 13 (Ventura) or later.
+needs macOS 13 (Ventura) or later, and a current Homebrew (the cask uses `postflight_steps`).
+
+Homebrew 6 and later only load casks from non-official taps you trust. Installing the fully
+qualified name above trusts just this one cask. To install by short name instead, run
+`brew tap round-robin-solutions/tap` and `brew trust --cask round-robin-solutions/tap/bridgey-rr` first.
 
 To remove it:
 
@@ -47,6 +51,13 @@ only the download flag from this one app. The download is still checked against 
 cask. If you would rather keep Gatekeeper's prompt, install the DMG by hand from the
 [releases page](https://github.com/round-robin-solutions/bridgey/releases), then right-click the app
 and choose **Open**.
+
+### Checks
+
+`brew style round-robin-solutions/tap` is clean. `brew audit --cask --online` reports only that
+the pinned version is a GitHub pre-release, which goes away with the first Stable release. With
+`--new` it also reports that the repository is a fork and that the ad-hoc signature does not meet
+Gatekeeper's requirements; both are expected for this app.
 
 ### What `zap` removes
 
